@@ -22,10 +22,12 @@
  * GNU General Public License for more details.
 */
 
-namespace Socialify\Telegram;
+namespace Socialify;
 
-use Socialify\ProviderAbstract;
-// final class Telegram extends ProviderAbstract {
 
+add_action('init', function(){
+
+    require_once __DIR__ . '/provider/Telegram.php';
     
-// }
+});
+
