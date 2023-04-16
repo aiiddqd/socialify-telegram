@@ -34,7 +34,6 @@ final class Telegram extends ProviderAbstract
             ]
         ];
 
-        //Instantiate Facebook's adapter directly
         $adapter = new \Hybridauth\Provider\Telegram($config);
 
         if(!empty($_GET['redirect_to'])){
@@ -42,8 +41,13 @@ final class Telegram extends ProviderAbstract
             $adapter->getStorage()->set('socialify_redirect_to', $redirect_to);
         }
 
-        //Attempt to authenticate the user with Facebook
-        $adapter->authenticate();
+
+        if($adapter->isConnected()){
+            //
+        } else {
+            include_once(__DIR__ . '/template-login.php');
+            exit;
+        }
 
         $data = [
             'user_profile' => $adapter->getUserProfile(),
